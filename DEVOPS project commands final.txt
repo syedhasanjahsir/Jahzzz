@@ -1,0 +1,116 @@
+>To swap 
+
+sudo dd if=/dev/zero of=/swapfile bs=5MB count=1024
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+
+
+>Install Jenkins
+
+sudo wget -O /etc/apt/keyrings/jenkins-keyring.asc \
+  https://pkg.jenkins.io/debian-stable/jenkins.io-2026.key
+echo "deb [signed-by=/etc/apt/keyrings/jenkins-keyring.asc]" \
+  https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
+sudo apt update
+sudo apt install jenkins
+
+>Install Java
+
+sudo apt update
+sudo apt install fontconfig openjdk-17-jre
+java -version
+
+>downld Docker 
+
+curl -fsSL https://get.docker.com | sudo sh
+
+
+.........................
+In server one that is in Jenkins server install all the package is given below but some times there is a error with the help of chatgpt i resolve it..
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+curl -fsSL https://get.docker.com | sudo sh
+sudo usermod -aG docker jenkins
+sudo systemctl restart jenkins
+apt update
+apt install docker.io -y
+systemctl start docker
+systemctl enable docker
+
+
+INSTALL K3S CLIENT 
+------------------------------
+curl -LO https://dl.k8s.io/release/v1.29.0/bin/linux/amd64/kubectl
+chmod +x kubectl
+mv kubectl /usr/local/bin/
+
+
+
+Jenkins--->  plugins --> Kubernetes cli ---docker 2---git server--install
+
+GitHub ---create nw repo ---name --create ---copy uRL
+ID-----github-creds
+
+dockerhub--token--permiss--read&write
+ID--dockerhub-creds
+
+--go to Jenkins credentials add  it 
+
+
+webhook --github--click repo---setting--webhook--add---payload--jrnkins/ip---8080/github-webhook/---content json--add
+
+
+k3s --server 2
+=======
+curl -sfL https://get.k3s.io | sh -
+sudo kubectl get nodes
+sudo cat /etc/rancher/k3s/k3s.yaml > /home/ubuntu/kubeconfig
+sudo chown ubuntu: ubuntu /home/ubuntu/kubeconfig
+
+cat /etc/rancher/k3s/k3s.yaml
+kubectl get nodes -o wide
+
+save the file .yaml then go to Jenkins add creds secret file ---ID k3s-config
+
+
+https://github.com/Deena7/27cicd-project.git
+
+
+
+vi Dockerfile
+vi index.html
+vi style.css
+vi service.yaml
+vi deployment.yaml
+vi Jenkinsfile----in change image id and 16 line url
+
+git init 
+git add .
+git commit -m "first commit"
+git status 
+git log --oneline 
+git branch main
+git switch main
+git remote add orgin (link git)
+git push orgin main
+
+
+Jenkins ---newitem--pipeline --GitHub project--url git ---trigger <git hub hook>--pipeline from SCM --git --paste url---crediant---branch to build --main--master---script path--Jenkins file ---apply..
+ip 30080
+
+
+winscp--ip--ussrnme--advan--athentication--pemtoppk--drag and move
+
+
+home path-- --sudo cp -r . /root/project-1
+in root 
+chmod 644 image and video
+
+git add .
+git commit -m "fith commit"
+git remote add orgin (link git)
+git push orgin main
+
+
